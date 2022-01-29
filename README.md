@@ -12,13 +12,13 @@ This template has been created to be used with raylib (www.raylib.com) and it's 
 _Copyright (c) 2014-2022 Ramon Santamaria ([@raysan5](https://twitter.com/raysan5))_
 ---
 
-## $(Game Title)
+## Frantic Fourways
 
-![$(Game Title)](screenshots/screenshot000.png "$(Game Title)")
+![Frantic Fourways](screenshots/screenshot001.png "Frantic Fourways")
 
 ### Description
 
-$(Your Game Description)
+The traffic is terrible! Try to get your car past all of the intersections.
 
 ### Features
 
@@ -30,26 +30,23 @@ $(Your Game Description)
 
 Keyboard:
 
-- $(Game Control 01)
-- $(Game Control 02)
-- $(Game Control 03)
+- Down Arrow accelerates
+- Up Arrow brakes
+- Enter to go to next screen
 
 ### Screenshots
 
-_TODO: Show your game to the world, animated GIFs recommended!._
+![Frantic Fourways](screenshots/screenshot002.png)
+![Frantic Fourways](screenshots/screenshot003.png)
+![Frantic Fourways](screenshots/screenshot004.png)
 
 ### Developers
 
-- $(Developer 01) - $(Role/Tasks Developed)
-- $(Developer 02) - $(Role/Tasks Developed)
-- $(Developer 03) - $(Role/Tasks Developed)
+- @pparke
 
 ### Links
 
-- YouTube Gameplay: $(YouTube Link)
 - itch.io Release: $(itch.io Game Page)
-- Steam Release: $(Steam Game Page)
--
 
 ### Credits
 
@@ -61,6 +58,4 @@ Car Sprites: Muhammad Amiruddin https://opengameart.org/users/amir027
 
 This game sources are licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
 
-$(Additional Licenses)
-
-_Copyright (c) $(Year) $(User Name) ($(User Twitter/GitHub Name))_
+_Copyright (c) 2022 @pparke)_
