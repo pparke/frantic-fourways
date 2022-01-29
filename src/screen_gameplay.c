@@ -119,11 +119,6 @@ void UpdateGameplayScreen(void)
         player.speed += player.acceleration;
     }
 
-    if (IsKeyPressed(KEY_R))
-    {
-        NextLevel();
-    }
-
     player.rect.y += player.speed;
 
     if (CheckCollisionRecs(player.rect, goal))
