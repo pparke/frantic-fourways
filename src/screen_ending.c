@@ -23,6 +23,7 @@
 *
 **********************************************************************************************/
 
+#include <stdio.h>
 #include "raylib.h"
 #include "screens.h"
 
@@ -39,7 +40,6 @@ static int finishScreen = 0;
 // Ending Screen Initialization logic
 void InitEndingScreen(void)
 {
-    // TODO: Initialize ENDING screen variables here!
     framesCounter = 0;
     finishScreen = 0;
 }
@@ -47,23 +47,50 @@ void InitEndingScreen(void)
 // Ending Screen Update logic
 void UpdateEndingScreen(void)
 {
-    // TODO: Update ENDING screen variables here!
-
-    // Press enter or tap to return to TITLE screen
     if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
     {
         finishScreen = 1;
-        PlaySound(fxCoin);
+        PlaySound(fxSelect);
     }
 }
 
 // Ending Screen Draw logic
 void DrawEndingScreen(void)
 {
-    // TODO: Draw ENDING screen here!
+    Color hwy_green;
+    hwy_green.r = 0;
+    hwy_green.g = 133;
+    hwy_green.b = 61;
+    hwy_green.a = 255;
+    Rectangle sign_rect = {10, 40, GetScreenWidth() - 20, 300};
     DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
-    DrawTextEx(font, "ENDING SCREEN", (Vector2){ 20, 10 }, font.baseSize*3, 4, DARKBLUE);
-    DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+    DrawRectangle(60, 160, 30, GetScreenHeight(), GRAY);
+    DrawRectangle(GetScreenWidth() - 90, 160, 30, GetScreenHeight(), GRAY);
+    DrawRectangleRounded(sign_rect, 0.1, 5, RED);
+    DrawRectangleRoundedLines(sign_rect, 0.1, 5, 5, WHITE);
+    const int center_x = screenWidth / 2;
+
+    const char *title = "GAME OVER";
+    const float title_size = 60;
+    const float title_spacing = 1;
+    Vector2 title_v = MeasureTextEx(font, title, title_size, title_spacing);
+
+    DrawTextEx(font, title, (Vector2){center_x - (title_v.x / 2), 80}, title_size, title_spacing, WHITE);
+
+    const char *sub_title = "Press Enter or Tap";
+    const float sub_title_size = 40;
+    const Vector2 sub_title_v = MeasureTextEx(font, sub_title, sub_title_size, title_spacing);
+    DrawTextEx(font, sub_title, (Vector2){center_x - (sub_title_v.x / 2), 250}, sub_title_size, title_spacing, WHITE);
+
+    char close_call_text[80];
+    sprintf(close_call_text, "Close Calls %d", close_calls);
+    const Vector2 close_call_v = MeasureTextEx(font, close_call_text, sub_title_size, title_spacing);
+    DrawTextEx(font, close_call_text, (Vector2){center_x - (close_call_v.x / 2), 140}, sub_title_size, title_spacing, WHITE);
+
+    char level_text[80];
+    sprintf(level_text, "Level %d", level + 1);
+    const Vector2 level_v = MeasureTextEx(font, level_text, sub_title_size, title_spacing);
+    DrawTextEx(font, level_text, (Vector2){center_x - (level_v.x / 2), 180}, sub_title_size, title_spacing, WHITE);
 }
 
 // Ending Screen Unload logic

@@ -37,8 +37,8 @@ RAYLIB_PATH           ?= ../../raylib
 
 # Locations of raylib.h and libraylib.a/libraylib.so
 # NOTE: Those variables are only used for PLATFORM_OS: LINUX, BSD
-RAYLIB_INCLUDE_PATH   ?= /usr/local/include
-RAYLIB_LIB_PATH       ?= /usr/local/lib
+RAYLIB_INCLUDE_PATH   ?= /usr/local/Cellar/raylib/4.0.0/include
+RAYLIB_LIB_PATH       ?= /usr/local/Cellar/raylib/4.0.0/lib
 
 # Library type compilation: STATIC (.a) or SHARED (.so/.dll)
 RAYLIB_LIBTYPE        ?= STATIC
@@ -127,15 +127,15 @@ endif
 # Define raylib release directory for compiled library
 RAYLIB_RELEASE_PATH 	?= $(RAYLIB_PATH)/src
 
-ifeq ($(PLATFORM),PLATFORM_WEB)
+#ifeq ($(PLATFORM),PLATFORM_WEB)
     # Emscripten required variables
-    EMSDK_PATH         ?= C:/emsdk
-    EMSCRIPTEN_PATH    ?= $(EMSDK_PATH)/upstream/emscripten
-    CLANG_PATH          = $(EMSDK_PATH)/upstream/bin
-    PYTHON_PATH         = $(EMSDK_PATH)/python/3.9.2-1_64bit
-    NODE_PATH           = $(EMSDK_PATH)/node/14.15.5_64bit/bin
-    export PATH         = $(EMSDK_PATH);$(EMSCRIPTEN_PATH);$(CLANG_PATH);$(NODE_PATH);$(PYTHON_PATH):$$(PATH)
-endif
+#    EMSDK_PATH         ?= C:/emsdk
+#    EMSCRIPTEN_PATH    ?= $(EMSDK_PATH)/upstream/emscripten
+#    CLANG_PATH          = $(EMSDK_PATH)/upstream/bin
+#    PYTHON_PATH         = $(EMSDK_PATH)/python/3.9.2-1_64bit
+#    NODE_PATH           = $(EMSDK_PATH)/node/14.15.5_64bit/bin
+#    export PATH         = $(EMSDK_PATH);$(EMSCRIPTEN_PATH);$(CLANG_PATH);$(NODE_PATH);$(PYTHON_PATH):$$(PATH)
+#endif
 
 # Define default C compiler: CC
 #------------------------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ endif
 # Define include paths for required headers: INCLUDE_PATHS
 # NOTE: Some external/extras libraries could be required (stb, physac, easings...)
 #------------------------------------------------------------------------------------------------
-INCLUDE_PATHS = -I. -I$(RAYLIB_PATH)/src -I$(RAYLIB_PATH)/src/external -I$(RAYLIB_PATH)/src/extras
+INCLUDE_PATHS = -I. -I$(RAYLIB_PATH)/src -I$(RAYLIB_PATH)/src/external -I$(RAYLIB_PATH)/src/extras -I$(RAYLIB_INCLUDE_PATH)
 
 # Define additional directories containing required header files
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
@@ -239,6 +239,7 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
         INCLUDE_PATHS += -I$(RAYLIB_INCLUDE_PATH)
     endif
 endif
+
 ifeq ($(PLATFORM),PLATFORM_RPI)
     INCLUDE_PATHS += -I$(RPI_TOOLCHAIN_SYSROOT)/opt/vc/include
     INCLUDE_PATHS += -I$(RPI_TOOLCHAIN_SYSROOT)/opt/vc/include/interface/vmcs_host/linux
@@ -376,7 +377,7 @@ PROJECT_SOURCE_FILES ?= \
     raylib_game.c \
     screen_logo.c \
     screen_title.c \
-    screen_options.c \
+    screen_credits.c \
     screen_gameplay.c \
     screen_ending.c
 

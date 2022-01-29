@@ -27,6 +27,11 @@
 #include "screens.h"
 
 //----------------------------------------------------------------------------------
+// Global includes
+//----------------------------------------------------------------------------------
+extern const int screenWidth;
+
+//----------------------------------------------------------------------------------
 // Module Variables Definition (local)
 //----------------------------------------------------------------------------------
 static int framesCounter = 0;
@@ -39,7 +44,6 @@ static int finishScreen = 0;
 // Title Screen Initialization logic
 void InitTitleScreen(void)
 {
-    // TODO: Initialize TITLE screen variables here!
     framesCounter = 0;
     finishScreen = 0;
 }
@@ -47,24 +51,41 @@ void InitTitleScreen(void)
 // Title Screen Update logic
 void UpdateTitleScreen(void)
 {
-    // TODO: Update TITLE screen variables here!
-
     // Press enter or tap to change to GAMEPLAY screen
     if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
     {
-        //finishScreen = 1;   // OPTIONS
-        finishScreen = 2;   // GAMEPLAY
-        PlaySound(fxCoin);
+        finishScreen = 1;
+        PlaySound(fxSelect);
     }
 }
 
 // Title Screen Draw logic
 void DrawTitleScreen(void)
 {
-    // TODO: Draw TITLE screen here!
-    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), GREEN);
-    DrawTextEx(font, "TITLE SCREEN", (Vector2){ 20, 10 }, font.baseSize*3, 4, DARKGREEN);
-    DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKGREEN);
+    Color hwy_green;
+    hwy_green.r = 0;
+    hwy_green.g = 133;
+    hwy_green.b = 61;
+    hwy_green.a = 255;
+    Rectangle sign_rect = {10, 40, GetScreenWidth() - 20, 300};
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
+    DrawRectangle(60, 160, 30, GetScreenHeight(), GRAY);
+    DrawRectangle(GetScreenWidth() - 90, 160, 30, GetScreenHeight(), GRAY);
+    DrawRectangleRounded(sign_rect, 0.1, 5, hwy_green);
+    DrawRectangleRoundedLines(sign_rect, 0.1, 5, 5, WHITE);
+    const int center_x = screenWidth / 2;
+
+    const char *title = "Frantic Fourways";
+    const float title_size = 60;
+    const float title_spacing = 1;
+    Vector2 title_v = MeasureTextEx(font, title, title_size, title_spacing);
+
+    DrawTextEx(font, title, (Vector2){center_x - (title_v.x / 2), 80}, title_size, title_spacing, WHITE);
+
+    const char *sub_title = "Press Enter or Tap";
+    const float sub_title_size = 40;
+    const Vector2 sub_title_v = MeasureTextEx(font, sub_title, sub_title_size, title_spacing);
+    DrawTextEx(font, sub_title, (Vector2){center_x - (sub_title_v.x / 2), 180}, sub_title_size, title_spacing, WHITE);
 }
 
 // Title Screen Unload logic

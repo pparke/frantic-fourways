@@ -29,7 +29,14 @@
 //----------------------------------------------------------------------------------
 // Types and Structures Definition
 //----------------------------------------------------------------------------------
-typedef enum GameScreen { LOGO = 0, TITLE, OPTIONS, GAMEPLAY, ENDING } GameScreen;
+typedef enum GameScreen
+{
+  LOGO = 0,
+  TITLE,
+  CREDITS,
+  GAMEPLAY,
+  ENDING
+} GameScreen;
 
 //----------------------------------------------------------------------------------
 // Global Variables Declaration (shared by several modules)
@@ -37,56 +44,73 @@ typedef enum GameScreen { LOGO = 0, TITLE, OPTIONS, GAMEPLAY, ENDING } GameScree
 extern GameScreen currentScreen;
 extern Font font;
 extern Music music;
-extern Sound fxCoin;
+extern Sound fxCrash;
+extern Sound fxHonk;
+extern Sound fxSelect;
+extern Sound fxDead;
+extern Sound fxPassed;
+extern Texture2D texPlayer;
+extern Texture2D texBlueCar;
+extern Texture2D texFinish;
+extern const int screenWidth;
+extern const int screenHeight;
+extern int close_calls;
+extern int level;
 
 #ifdef __cplusplus
-extern "C" {            // Prevents name mangling of functions
+extern "C"
+{ // Prevents name mangling of functions
 #endif
 
-//----------------------------------------------------------------------------------
-// Logo Screen Functions Declaration
-//----------------------------------------------------------------------------------
-void InitLogoScreen(void);
-void UpdateLogoScreen(void);
-void DrawLogoScreen(void);
-void UnloadLogoScreen(void);
-int FinishLogoScreen(void);
+  //----------------------------------------------------------------------------------
+  // Logo Screen Functions Declaration
+  //----------------------------------------------------------------------------------
+  void InitLogoScreen(void);
+  void UpdateLogoScreen(void);
+  void DrawLogoScreen(void);
+  void UnloadLogoScreen(void);
+  int FinishLogoScreen(void);
 
-//----------------------------------------------------------------------------------
-// Title Screen Functions Declaration
-//----------------------------------------------------------------------------------
-void InitTitleScreen(void);
-void UpdateTitleScreen(void);
-void DrawTitleScreen(void);
-void UnloadTitleScreen(void);
-int FinishTitleScreen(void);
+  //----------------------------------------------------------------------------------
+  // Title Screen Functions Declaration
+  //----------------------------------------------------------------------------------
+  void InitTitleScreen(void);
+  void UpdateTitleScreen(void);
+  void DrawTitleScreen(void);
+  void UnloadTitleScreen(void);
+  int FinishTitleScreen(void);
 
-//----------------------------------------------------------------------------------
-// Options Screen Functions Declaration
-//----------------------------------------------------------------------------------
-void InitOptionsScreen(void);
-void UpdateOptionsScreen(void);
-void DrawOptionsScreen(void);
-void UnloadOptionsScreen(void);
-int FinishOptionsScreen(void);
+  //----------------------------------------------------------------------------------
+  // Credits Screen Functions Declaration
+  //----------------------------------------------------------------------------------
+  void InitCreditsScreen(void);
+  void UpdateCreditsScreen(void);
+  void DrawCreditsScreen(void);
+  void UnloadCreditsScreen(void);
+  int FinishCreditsScreen(void);
 
-//----------------------------------------------------------------------------------
-// Gameplay Screen Functions Declaration
-//----------------------------------------------------------------------------------
-void InitGameplayScreen(void);
-void UpdateGameplayScreen(void);
-void DrawGameplayScreen(void);
-void UnloadGameplayScreen(void);
-int FinishGameplayScreen(void);
+  //----------------------------------------------------------------------------------
+  // Gameplay Screen Functions Declaration
+  //----------------------------------------------------------------------------------
+  void InitGameplayScreen(void);
+  void UpdateGameplayScreen(void);
+  void DrawGameplayScreen(void);
+  void UnloadGameplayScreen(void);
+  int FinishGameplayScreen(void);
 
-//----------------------------------------------------------------------------------
-// Ending Screen Functions Declaration
-//----------------------------------------------------------------------------------
-void InitEndingScreen(void);
-void UpdateEndingScreen(void);
-void DrawEndingScreen(void);
-void UnloadEndingScreen(void);
-int FinishEndingScreen(void);
+  //----------------------------------------------------------------------------------
+  // Ending Screen Functions Declaration
+  //----------------------------------------------------------------------------------
+  void InitEndingScreen(void);
+  void UpdateEndingScreen(void);
+  void DrawEndingScreen(void);
+  void UnloadEndingScreen(void);
+  int FinishEndingScreen(void);
+
+  //----------------------------------------------------------------------------------
+  // Utility Functions Declaration
+  //----------------------------------------------------------------------------------
+  void DrawCenteredText(Font font, const char *text, int yPosition, float fontSize, float spacing, Color tint);
 
 #ifdef __cplusplus
 }
