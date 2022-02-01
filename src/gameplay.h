@@ -5,6 +5,7 @@
 
 #define MAX_ROADS 5
 #define MAX_CARS 20
+#define NUM_LEVELS 6
 
 typedef struct Player
 {

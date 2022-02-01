@@ -58,8 +58,7 @@ static Road car_roads[MAX_ROADS];
 static int next_road = 0;
 static Color grass_green = {30, 157, 53, 255};
 
-static const int num_levels = 6;
-static Level levels[num_levels] = {
+static Level levels[NUM_LEVELS] = {
     {.num_roads = 1, .road_offsets = {200}, .cars_per_road = {1}, .car_spacing = {0}, .car_speeds = {10}},
     {.num_roads = 2, .road_offsets = {200, 400}, .cars_per_road = {1, 1}, .car_spacing = {0, 0}, .car_speeds = {10, 5}},
     {.num_roads = 1, .road_offsets = {350}, .cars_per_road = {2}, .car_spacing = {60}, .car_speeds = {10}},
@@ -114,7 +113,7 @@ void UpdateGameplayScreen(void)
     {
         player.speed -= player.acceleration;
     }
-    else if (IsKeyDown(KEY_DOWN) || || IsKeyDown(KEY_S) || IsGestureDetected(GESTURE_HOLD))
+    else if (IsKeyDown(KEY_DOWN) || IsKeyDown(KEY_S) || IsGestureDetected(GESTURE_HOLD))
     {
         player.speed += player.acceleration;
     }
@@ -224,7 +223,7 @@ void NextLevel(void)
 
 void LoadLevel()
 {
-    if (level >= num_levels)
+    if (level >= NUM_LEVELS)
     {
         RandomLevel(&random_level);
         current_level = &random_level;
