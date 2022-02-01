@@ -110,11 +110,11 @@ void InitGameplayScreen(void)
 // Gameplay Screen Update logic
 void UpdateGameplayScreen(void)
 {
-    if ((IsKeyDown(KEY_UP) || IsGestureDetected(GESTURE_TAP)) && player.speed > 0)
+    if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_W) || IsGestureDetected(GESTURE_TAP)) && player.speed > 0)
     {
         player.speed -= player.acceleration;
     }
-    else if (IsKeyDown(KEY_DOWN) || IsGestureDetected(GESTURE_HOLD))
+    else if (IsKeyDown(KEY_DOWN) || || IsKeyDown(KEY_S) || IsGestureDetected(GESTURE_HOLD))
     {
         player.speed += player.acceleration;
     }
