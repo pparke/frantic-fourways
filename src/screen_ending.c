@@ -57,11 +57,6 @@ void UpdateEndingScreen(void)
 // Ending Screen Draw logic
 void DrawEndingScreen(void)
 {
-    Color hwy_green;
-    hwy_green.r = 0;
-    hwy_green.g = 133;
-    hwy_green.b = 61;
-    hwy_green.a = 255;
     Rectangle sign_rect = {10, 40, GetScreenWidth() - 20, 300};
     DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
     DrawRectangle(60, 160, 30, GetScreenHeight(), GRAY);
